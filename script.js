@@ -1,4 +1,3 @@
-
 const bands = [
   'The Plot in You',
   'The Devil Wears Prada',
@@ -15,23 +14,24 @@ const bands = [
   'An Old Dog'
 ];
 
-function removeArticle(name) {
-  return name.replace(/^(a |an |the )/i, '').trim();
+function sortBands(bands) {
+  function stripArticle(name) {
+    return name.replace(/^(a |an |the )/i, '').toLowerCase();
+  }
+
+  return bands.sort((a, b) => {
+    return stripArticle(a).localeCompare(stripArticle(b));
+  });
 }
 
-bands.sort((a, b) => {
-  return removeArticle(a).localeCompare(removeArticle(b));
-});
+const sortedBands = sortBands(bands);
 
-const ul = document.createElement('ul');
-ul.id = 'band';
+const ul = document.getElementById('band');
 
-
-bands.forEach(band => {
+sortedBands.forEach(band => {
   const li = document.createElement('li');
   li.textContent = band;
   ul.appendChild(li);
 });
 
-document.body.appendChild(ul);
 
