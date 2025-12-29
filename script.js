@@ -17,18 +17,11 @@ const bands = [
 // Function to sort bands
 function sortBands(bands) {
 
-  // Remove invalid values (judge safety)
-  const cleanBands = bands.filter(band => typeof band === 'string' && band.trim() !== '');
-
   function removeArticle(name) {
-    return name
-      .toLowerCase()
-      .replace(/^(the|an|a)\s+/i, '')
-      .trim();
+    return name.replace(/^(a |an |the )/i, '').toLowerCase();
   }
 
-  // Sort without mutating original array
-  return cleanBands.slice().sort((a, b) => {
+  return bands.slice().sort(function (a, b) {
     const nameA = removeArticle(a);
     const nameB = removeArticle(b);
 
@@ -38,10 +31,10 @@ function sortBands(bands) {
   });
 }
 
-// Call function
+// Get sorted result
 const sortedBands = sortBands(bands);
 
-// Populate existing UL
+// Populate UL
 const ul = document.getElementById('band');
 
 for (let i = 0; i < sortedBands.length; i++) {
@@ -49,6 +42,7 @@ for (let i = 0; i < sortedBands.length; i++) {
   li.textContent = sortedBands[i];
   ul.appendChild(li);
 }
+
 
 
 
