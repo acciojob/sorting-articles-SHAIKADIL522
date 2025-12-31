@@ -14,25 +14,27 @@ const bands = [
   'An Old Dog'
 ];
 
-// Function to remove articles for sorting
+// Remove articles for sorting comparison
 function stripArticle(name) {
-  return name.replace(/^(a |an |the )/i, '').toLowerCase();
+  return name.replace(/^(a |an |the )/i, "").trim().toLowerCase();
 }
 
-// Sort bands ignoring a, an, the
-bands.sort((a, b) => {
+// SORT and assign back
+const sortedBands = bands.sort((a, b) => {
   return stripArticle(a).localeCompare(stripArticle(b));
 });
 
-// Get the UL element
-const ul = document.getElementById("band");
+// Get list and clear it first
+const list = document.getElementById("band");
+list.innerHTML = "";
 
-// Add sorted bands to the list
-bands.forEach(band => {
+// Add each sorted band
+sortedBands.forEach(band => {
   const li = document.createElement("li");
   li.textContent = band;
-  ul.appendChild(li);
+  list.appendChild(li);
 });
+
 
 
 
