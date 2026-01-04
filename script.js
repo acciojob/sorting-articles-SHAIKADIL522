@@ -25,7 +25,7 @@ const sortedBands = bands.sort((a, b) => {
 });
 
 // Get list and clear it first
-const list = document.getElementById("band");
+const list = document.getElementById("bands");
 list.innerHTML = "";
 
 // Add each sorted band
